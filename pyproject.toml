@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "theawesomelunchbot"
+version = "0.1.0"
+description = "The awesome lunch bot gives today's menu"
+authors = ["KaOs1 <davellidavide@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+instagrapi = "^1.16.17"
+Pillow = "^9.1.1"
+
+[tool.poetry.dev-dependencies]
+python-decouple = "3.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
