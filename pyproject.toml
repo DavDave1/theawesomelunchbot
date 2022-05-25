@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.10"
 instagrapi = "^1.16.17"
 Pillow = "^9.1.1"
+SkPy = "^0.10.4"
 
 [tool.poetry.dev-dependencies]
 python-decouple = "3.6"
