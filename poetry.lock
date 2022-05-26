@@ -101,7 +101,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "python-decouple"
 version = "3.6"
 description = "Strict separation of settings from code."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -167,7 +167,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.4"
-content-hash = "3a178c9f2fc05950b3996726249df125d0d08d5fbd83eeb47176b71aeb412c3e"
+content-hash = "e479493b98f744bc66e3d08608a57e8408f789f5a64829996679100cb2b10d98"
 
 [metadata.files]
 beautifulsoup4 = [
