@@ -18,7 +18,9 @@ class InstaFecther:
 
     def __init__(self):
         if self.storage.connection.exists(INSTA_SETTINGS_KEY):
-            insta_settings = self.storage.connection.get(INSTA_SETTINGS_KEY)
+            insta_settings = json.loads(
+                self.storage.connection.get(INSTA_SETTINGS_KEY))
+
             self.client = Client(insta_settings)
 
         if self.client.login(INSTA_USERNAME, INSTA_PASSWORD):

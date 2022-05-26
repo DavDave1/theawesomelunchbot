@@ -3,18 +3,33 @@ from decouple import config
 import logging
 
 from insta_fetcher import InstaFecther
+from storage_connect import StorageConnect
 
 USERNAME = config("SKYPE_USERNAME")
 PASSWORD = config("SKYPE_PASSWORD")
 SKYPE_TOKEN_KEY = "skype_token"
+SKYPE_TOKEN_PATH = config("DATA_FOLDER") + "/skype_token.json"
 
 
 class SkypeHandler(SkypeEventLoop):
     insta_fecther = InstaFecther()
 
     def __init__(self):
+        storage = StorageConnect()
+
+        if storage.connection.exists(SKYPE_TOKEN_KEY):
+            token = storage.connection.get(SKYPE_TOKEN_KEY)
+
+            with open(SKYPE_TOKEN_PATH, "w") as f:
+                f.write(str(token))
+
         super(SkypeHandler, self).__init__(
-            USERNAME, PASSWORD)
+            USERNAME, PASSWORD, SKYPE_TOKEN_PATH)
+
+        with open(SKYPE_TOKEN_PATH, "r") as f:
+            token = f.read()
+            storage.connection.set(SKYPE_TOKEN_KEY, token)
+
         print(f"skype handler logged in as {USERNAME}")
 
     def onEvent(self, event):
