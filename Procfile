@@ -1,0 +1,1 @@
+worker: python ./the_awesome_lunch_bot/main.py
