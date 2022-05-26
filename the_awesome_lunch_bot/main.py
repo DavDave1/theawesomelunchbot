@@ -1,11 +1,11 @@
-from distutils.debug import DEBUG
+from distutils.log import INFO
 from skype_handler import SkypeHandler
 
 import logging
 
 if __name__ == "__main__":
-    logging.basicConfig(level=DEBUG)
-    logging.info("Starting application")
+    logging.basicConfig(filename="./data/lunch_bot.log", level=INFO)
+    print("Starting application")
     skype_handler = SkypeHandler()
     skype_handler.loop()
 
