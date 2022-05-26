@@ -1,4 +1,3 @@
-from sqlite3 import connect
 import redis
 from decouple import config
 
@@ -13,6 +12,6 @@ class StorageConnect(object):
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super(StorageConnect, cls).__new__(cls)
-            cls._instance.connection = redis.Redis(REDIS_URL)
+            cls._instance.connection = redis.from_url(REDIS_URL)
 
         return cls._instance
