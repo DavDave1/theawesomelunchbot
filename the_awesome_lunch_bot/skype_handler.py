@@ -6,7 +6,7 @@ from insta_fetcher import InstaFecther
 
 USERNAME = config("SKYPE_USERNAME")
 PASSWORD = config("SKYPE_PASSWORD")
-SKYPE_TOKEN_PATH = config("DATA_FOLDER") + "/skype_token.json"
+SKYPE_TOKEN_KEY = "skype_token"
 
 
 class SkypeHandler(SkypeEventLoop):
@@ -14,7 +14,7 @@ class SkypeHandler(SkypeEventLoop):
 
     def __init__(self):
         super(SkypeHandler, self).__init__(
-            USERNAME, PASSWORD, SKYPE_TOKEN_PATH)
+            USERNAME, PASSWORD)
         print(f"skype handler logged in as {USERNAME}")
 
     def onEvent(self, event):

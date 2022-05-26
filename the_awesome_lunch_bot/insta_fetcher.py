@@ -2,21 +2,28 @@ from instagrapi import Client
 from decouple import config
 from os.path import exists
 
+from storage_connect import StorageConnect
+
 import logging
+import json
 
 INSTA_USERNAME = config("INSTA_USERNAME")
 INSTA_PASSWORD = config("INSTA_PASSWORD")
-INSTA_SETTINGS_PATH = config("DATA_FOLDER") + "/insta_settings.json"
+INSTA_SETTINGS_KEY = "insta_settings"
 
 
 class InstaFecther:
     client = Client()
+    storage = StorageConnect()
 
     def __init__(self):
-        if exists(INSTA_SETTINGS_PATH):
-            self.client.load_settings(INSTA_SETTINGS_PATH)
+        if self.storage.connection.exists(INSTA_SETTINGS_KEY):
+            insta_settings = self.storage.connection.get(INSTA_SETTINGS_KEY)
+            self.client = Client(insta_settings)
+
         if self.client.login(INSTA_USERNAME, INSTA_PASSWORD):
-            self.client.dump_settings(INSTA_SETTINGS_PATH)
+            insta_settings = json.dumps(self.client.get_settings())
+            self.storage.connection.set(INSTA_SETTINGS_KEY, insta_settings)
 
         print(f"insta fetcher logged in as {INSTA_USERNAME}")
 
