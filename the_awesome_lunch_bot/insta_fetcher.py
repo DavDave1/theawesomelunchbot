@@ -1,5 +1,6 @@
 from instagrapi import Client
 from decouple import config
+from os.path import exists
 
 import logging
 
@@ -12,7 +13,8 @@ class InstaFecther:
     client = Client()
 
     def __init__(self):
-        self.client.load_settings(INSTA_SETTINGS_PATH)
+        if exists(INSTA_SETTINGS_PATH):
+            self.client.load_settings(INSTA_SETTINGS_PATH)
         if self.client.login(INSTA_USERNAME, INSTA_PASSWORD):
             self.client.dump_settings(INSTA_SETTINGS_PATH)
 
