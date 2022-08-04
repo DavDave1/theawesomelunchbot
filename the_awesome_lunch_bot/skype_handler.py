@@ -45,3 +45,5 @@ class SkypeHandler(SkypeEventLoop):
                         f"Ecco il menu di {user} del {timestamp}:\n\n{url}")
                 case "!bip":
                     event.msg.chat.sendMsg("bop")
+                case "!peperonata":
+                    event.msg.chat.sendMsg("La peperonata delle grazzine è imperdibile, prenotate al 3391640907")
